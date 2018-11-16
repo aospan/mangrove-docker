@@ -1,0 +1,91 @@
+diff --git a/CMakeLists.txt b/CMakeLists.txt
+index 5703dbf..a56669a 100644
+--- a/CMakeLists.txt
++++ b/CMakeLists.txt
+@@ -94,11 +94,11 @@ find_package(libmongocxx ${LIBMONGOCXX_REQUIRED_VERSION} REQUIRED)
+ 
+ set(LIBBSON_REQUIRED_VERSION 1.7.0)
+ set(LIBBSON_REQUIRED_ABI_VERSION 1.0)
+-find_package(LibBSON ${LIBBSON_REQUIRED_VERSION} REQUIRED)
++find_package(libbson-${LIBBSON_REQUIRED_ABI_VERSION} ${LIBBSON_REQUIRED_VERSION} REQUIRED)
+ 
+ set(LIBMONGOC_REQUIRED_VERSION 1.7.0)
+ set(LIBMONGOC_REQUIRED_ABI_VERSION 1.0)
+-find_package(LibMongoC ${LIBMONGOC_REQUIRED_VERSION} REQUIRED)
++find_package(libmongoc-${LIBMONGOC_REQUIRED_ABI_VERSION} ${LIBMONGOC_REQUIRED_VERSION} REQUIRED)
+ 
+ add_subdirectory(src)
+ 
+diff --git a/examples/mangrove/CMakeLists.txt b/examples/mangrove/CMakeLists.txt
+index abd5568..6ca97b7 100644
+--- a/examples/mangrove/CMakeLists.txt
++++ b/examples/mangrove/CMakeLists.txt
+@@ -13,8 +13,8 @@
+ # limitations under the License.
+ 
+ include_directories(
+-    ${LIBBSON_INCLUDE_DIRS}
+-    ${LIBMONGOC_INCLUDE_DIRS}
++    ${BSON_INCLUDE_DIRS}
++    ${MONGOC_INCLUDE_DIRS}
+     ${LIBBSONCXX_INCLUDE_DIRS}
+     ${LIBMONGOCXX_INCLUDE_DIRS}
+     ${CMAKE_INSTALL_PREFIX}/${MANGROVE_HEADER_INSTALL_DIR}
+diff --git a/src/boson/CMakeLists.txt b/src/boson/CMakeLists.txt
+index 7a6231e..7afa591 100644
+--- a/src/boson/CMakeLists.txt
++++ b/src/boson/CMakeLists.txt
+@@ -24,11 +24,11 @@ find_package(libmongocxx ${LIBMONGOCXX_REQUIRED_VERSION} REQUIRED)
+ 
+ set(LIBBSON_REQUIRED_VERSION 1.3.4)
+ set(LIBBSON_REQUIRED_ABI_VERSION 1.0)
+-find_package(LibBSON ${LIBBSON_REQUIRED_VERSION} REQUIRED)
++find_package(libbson-${LIBBSON_REQUIRED_ABI_VERSION} ${LIBBSON_REQUIRED_VERSION} REQUIRED)
+ 
+ set(LIBMONGOC_REQUIRED_VERSION 1.3.4)
+ set(LIBMONGOC_REQUIRED_ABI_VERSION 1.0)
+-find_package(LibMongoC ${LIBMONGOC_REQUIRED_VERSION} REQUIRED)
++find_package(libmongoc-${LIBMONGOC_REQUIRED_ABI_VERSION} ${LIBMONGOC_REQUIRED_VERSION} REQUIRED)
+ 
+ # Update these as needed.
+ # TODO: read from file
+@@ -51,8 +51,8 @@ set(boson_sources
+ include_directories(
+     ${LIBBSONCXX_INCLUDE_DIRS}
+     ${LIBMONGOCXX_INCLUDE_DIRS}
+-    ${LIBBSON_INCLUDE_DIRS}
+-    ${LIBMONGOC_INCLUDE_DIRS}
++    ${BSON_INCLUDE_DIRS}
++    ${MONGOC_INCLUDE_DIRS}
+     ${CMAKE_SOURCE_DIR}/src
+     ${CMAKE_BINARY_DIR}/src
+     ${CMAKE_SOURCE_DIR}/src/third_party/cereal/include
+diff --git a/src/mangrove/CMakeLists.txt b/src/mangrove/CMakeLists.txt
+index cd55458..0568095 100644
+--- a/src/mangrove/CMakeLists.txt
++++ b/src/mangrove/CMakeLists.txt
+@@ -24,11 +24,11 @@ find_package(libmongocxx ${LIBMONGOCXX_REQUIRED_VERSION} REQUIRED)
+ 
+ set(LIBBSON_REQUIRED_VERSION 1.3.4)
+ set(LIBBSON_REQUIRED_ABI_VERSION 1.0)
+-find_package(LibBSON ${LIBBSON_REQUIRED_VERSION} REQUIRED)
++find_package(libbson-${LIBBSON_REQUIRED_ABI_VERSION} ${LIBBSON_REQUIRED_VERSION} REQUIRED)
+ 
+ set(LIBMONGOC_REQUIRED_VERSION 1.3.4)
+ set(LIBMONGOC_REQUIRED_ABI_VERSION 1.0)
+-find_package(LibMongoC ${LIBMONGOC_REQUIRED_VERSION} REQUIRED)
++find_package(libmongoc-${LIBMONGOC_REQUIRED_ABI_VERSION} ${LIBMONGOC_REQUIRED_VERSION} REQUIRED)
+ 
+ # Update these as needed.
+ # TODO: read from file
+@@ -56,8 +56,8 @@ set(mangrove_sources
+ include_directories(
+     ${LIBBSONCXX_INCLUDE_DIRS}
+     ${LIBMONGOCXX_INCLUDE_DIRS}
+-    ${LIBBSON_INCLUDE_DIRS}
+-    ${LIBMONGOC_INCLUDE_DIRS}
++    ${BSON_INCLUDE_DIRS}
++    ${MONGOC_INCLUDE_DIRS}
+     ${CMAKE_SOURCE_DIR}/src
+     ${CMAKE_BINARY_DIR}/src
+     ${CMAKE_SOURCE_DIR}/src/third_party/cereal/include
